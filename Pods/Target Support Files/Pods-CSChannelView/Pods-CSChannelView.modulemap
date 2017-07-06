@@ -1,0 +1,6 @@
+framework module Pods_CSChannelView {
+  umbrella header "Pods-CSChannelView-umbrella.h"
+
+  export *
+  module * { export * }
+}
