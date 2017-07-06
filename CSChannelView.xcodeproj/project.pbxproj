@@ -15,11 +15,9 @@
 		9E7FD6241F0DECDF00C14EF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E7FD6171F0DECDF00C14EF2 /* LaunchScreen.storyboard */; };
 		9E7FD6251F0DECDF00C14EF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E7FD6191F0DECDF00C14EF2 /* Main.storyboard */; };
 		9E7FD6261F0DECDF00C14EF2 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E7FD61B1F0DECDF00C14EF2 /* config.plist */; };
-		9E7FD6281F0DECDF00C14EF2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E7FD61E1F0DECDF00C14EF2 /* Info.plist */; };
 		9E7FD6291F0DECDF00C14EF2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E7FD61F1F0DECDF00C14EF2 /* main.m */; };
 		9E7FD62A1F0DECDF00C14EF2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E7FD6211F0DECDF00C14EF2 /* ViewController.m */; };
 		9E7FD62E1F0DEDFE00C14EF2 /* CSToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E7FD62D1F0DEDFE00C14EF2 /* CSToast.m */; };
-		9E7FD6311F0DFBD000C14EF2 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 9E7FD6301F0DFBD000C14EF2 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +38,6 @@
 		9E7FD6211F0DECDF00C14EF2 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		9E7FD62C1F0DEDFE00C14EF2 /* CSToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSToast.h; sourceTree = "<group>"; };
 		9E7FD62D1F0DEDFE00C14EF2 /* CSToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSToast.m; sourceTree = "<group>"; };
-		9E7FD6301F0DFBD000C14EF2 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		9EDA20661EEFB71800E50B84 /* CSChannelView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CSChannelView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FCC31AFE6121D6AF8F533B3 /* Pods_CSChannelView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CSChannelView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C56A3C3E4098C80AC4E5FB8C /* Pods-CSChannelView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CSChannelView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CSChannelView/Pods-CSChannelView.debug.xcconfig"; sourceTree = "<group>"; };
@@ -78,10 +75,10 @@
 		9E7FD5EB1F0DDB7D00C14EF2 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				9E7FD5EC1F0DDB7D00C14EF2 /* CSChannelButton.h */,
-				9E7FD5ED1F0DDB7D00C14EF2 /* CSChannelButton.m */,
 				9E7FD5EE1F0DDB7D00C14EF2 /* CSChannelView.h */,
 				9E7FD5EF1F0DDB7D00C14EF2 /* CSChannelView.m */,
+				9E7FD5EC1F0DDB7D00C14EF2 /* CSChannelButton.h */,
+				9E7FD5ED1F0DDB7D00C14EF2 /* CSChannelButton.m */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -139,7 +136,6 @@
 		9EDA205D1EEFB71800E50B84 = {
 			isa = PBXGroup;
 			children = (
-				9E7FD6301F0DFBD000C14EF2 /* README.md */,
 				9E7FD5EB1F0DDB7D00C14EF2 /* Sources */,
 				9E7FD5F21F0DDB9000C14EF2 /* Demo */,
 				9E7FD60A1F0DDB9E00C14EF2 /* Tests */,
@@ -222,7 +218,6 @@
 				9E7FD6261F0DECDF00C14EF2 /* config.plist in Resources */,
 				9E7FD6251F0DECDF00C14EF2 /* Main.storyboard in Resources */,
 				9E7FD6231F0DECDF00C14EF2 /* Assets.xcassets in Resources */,
-				9E7FD6281F0DECDF00C14EF2 /* Info.plist in Resources */,
 				9E7FD6241F0DECDF00C14EF2 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,7 +280,6 @@
 				9E7FD62E1F0DEDFE00C14EF2 /* CSToast.m in Sources */,
 				9E7FD62A1F0DECDF00C14EF2 /* ViewController.m in Sources */,
 				9E7FD6291F0DECDF00C14EF2 /* main.m in Sources */,
-				9E7FD6311F0DFBD000C14EF2 /* README.md in Sources */,
 				9E7FD5F11F0DDB7D00C14EF2 /* CSChannelView.m in Sources */,
 				9E7FD5F01F0DDB7D00C14EF2 /* CSChannelButton.m in Sources */,
 				9E7FD6221F0DECDF00C14EF2 /* AppDelegate.m in Sources */,

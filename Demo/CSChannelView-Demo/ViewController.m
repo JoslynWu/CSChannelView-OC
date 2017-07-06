@@ -38,6 +38,12 @@
     [self setupUI];
 }
 
+
+// -------------------- example --------------------
+
+/**
+ 只有频道的图标
+ */
 - (void)setupImageOnlyChannelView {
     CSChannelView *imgOnlyChannelView = [[CSChannelView alloc] initWithFrame:CGRectMake(0, 20, kFULL_WIDTH, 100)];
     [self.view addSubview:imgOnlyChannelView];
@@ -47,12 +53,14 @@
     [imgOnlyChannelView loadDataInfoWithImages:self.imgs tittls:nil tagImages:nil];
 }
 
+/**
+ 只有频道标题
+ */
 - (void)setupTitleOnlyChannelView {
     CSChannelView *titleOnlyChannelView = [[CSChannelView alloc] initWithFrame:CGRectMake(0, 120 + 16, kFULL_WIDTH, 35 + 30)];
     [self.view addSubview:titleOnlyChannelView];
     titleOnlyChannelView.titleHeight = 35;
     titleOnlyChannelView.distanceOfCol = 8;
-    titleOnlyChannelView.distanceOfTop = 15;
     titleOnlyChannelView.prettySingleRow = true;
     titleOnlyChannelView.hidesPageAlawys = true;
     titleOnlyChannelView.otherConfig = ^(UIButton *item) {
@@ -66,13 +74,22 @@
     [titleOnlyChannelView loadDataInfoWithImages:nil tittls:self.titles tagImages:nil];
 }
 
+/**
+ 自定义频道样式
+ */
 - (void)customChannelView {
     CSChannelView *channelView = [[CSChannelView alloc] initWithFrame:CGRectMake(0, 201 + 16, kFULL_WIDTH, 165)];
     self.channelView = channelView;
+//    channelView.verticalScrollActivated = YES;
+    channelView.autoAdjustHeight = YES;
     [self.view addSubview:channelView];
     [self addActionWithSender:channelView];
     [channelView loadDataInfoWithImages:self.imgs tittls:self.titles tagImages:self.tagImgs];
 }
+// -------------------- example --------------------
+
+
+
 
 - (void)loadData {
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"config" ofType:@".plist"];
@@ -84,6 +101,7 @@
 - (void)setupUI {
     self.showImage = true; self.showTitle = true; self.showTag = true;
     self.rowSegment.selectedSegmentIndex = 1; self.itemCountSegment.selectedSegmentIndex = 1;
+    self.lastStepperValue = 7;
     
     [self setupImageOnlyChannelView];
     [self setupTitleOnlyChannelView];

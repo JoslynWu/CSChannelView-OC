@@ -80,6 +80,9 @@
 /** 顶部间距(第一行距顶部的距离)。默认为8.0。 */
 @property (nonatomic, assign) CGFloat distanceOfTop;
 
+/** 底部间距(每页最后一行距底部的距离)。默认为8.0。 */
+@property (nonatomic, assign) CGFloat distanceOfbottom;
+
 /** 占位图 */
 @property (nonatomic, strong, nullable) UIImage *placeholderImage;
 
@@ -92,7 +95,7 @@
 /** 对Item（UIButton）的其他设置 */
 @property (nonatomic, copy, nullable) void(^otherConfig)(UIButton * _Nonnull item);
 
-/** 自动调整高度（高度超出时） */
+/** 自动调整高度（只显示一页） */
 @property (nonatomic, assign) BOOL autoAdjustHeight;
 
 /** 可以垂直滚动（高度超出时） */

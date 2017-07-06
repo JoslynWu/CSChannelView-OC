@@ -94,6 +94,7 @@ static const CGFloat CS_BUTTON_BASE_TAG = 123321;
     self.distanceInItem = 0.0;
     self.distanceOfRow = 8.0;
     self.distanceOfTop = 8.0;
+    self.distanceOfbottom = 8.0;
     self.distanceOfCol = 0.0;
     self.titleFont = [UIFont systemFontOfSize:13];
     self.titleColor = [UIColor colorWithRed:70/255.0 green:70/255.0 blue:70/255.0 alpha:1];
@@ -128,31 +129,20 @@ static const CGFloat CS_BUTTON_BASE_TAG = 123321;
     
     if (self.prettySingleRow) { self.numberOfRowInPage = 1; }
     NSUInteger itemCount = self.channelData.count;
-    NSUInteger pageCount = ceil(itemCount / (self.numberOfItemInRow * self.numberOfRowInPage + 0.1));
+    NSUInteger pageCount = (self.autoAdjustHeight ? 1 : ceil(itemCount / (self.numberOfItemInRow * self.numberOfRowInPage + 0.1)));
     CGFloat page_w = CGRectGetWidth(self.frame);
     CGFloat page_h = CGRectGetHeight(self.frame);
     
-    self.scrollView.frame = self.bounds;
-    self.scrollView.contentSize = CGSizeMake(pageCount * page_w, page_h);
-    
-    self.pageCtl.hidesForSinglePage = self.hidesForSinglePage;
-    if (self.hidesPageAlawys) { self.pageCtl.hidesForSinglePage = false; }
-    self.pageCtl.hidden = self.hidesPageAlawys;
-    CGFloat pagCtl_center_y = CGRectGetHeight(self.frame) - CGRectGetHeight(self.pageCtl.frame) * 0.5 - self.pageDotBottomMargin;
-    self.pageCtl.center = CGPointMake(self.scrollView.center.x, pagCtl_center_y);
-    self.pageCtl.pageIndicatorTintColor = self.pageDotColor;
-    self.pageCtl.currentPageIndicatorTintColor = self.currentPageDotColor;
-    self.pageCtl.numberOfPages = pageCount;
-    
     self.pageArr = [NSMutableArray arrayWithCapacity:pageCount];
     for (int i = 0; i < pageCount; i++) {
-        UIView *pageView = [[UIView alloc] initWithFrame:CGRectMake(i * page_w, 0, page_w, page_h)];
+        UIView *pageView = [[UIView alloc] init];
         [self.scrollView addSubview:pageView];
         [self.pageArr addObject:pageView];
     }
     
     CGFloat scale = (self.isAutoScale ? [UIScreen mainScreen].bounds.size.width / 375.0 : 1.0);
     self.distanceOfTop = self.distanceOfTop * scale;
+    self.distanceOfbottom = self.distanceOfbottom * scale;
     self.distanceOfRow = self.distanceOfRow * scale;
     self.distanceOfCol = self.distanceOfCol * scale;
     
@@ -160,15 +150,14 @@ static const CGFloat CS_BUTTON_BASE_TAG = 123321;
     NSUInteger itemCountInOnePage = self.numberOfItemInRow * self.numberOfRowInPage;
     CGFloat button_h = [self calcButtonHeight] * scale;
     CGFloat button_w = ((page_w - (self.numberOfItemInRow + 1) * self.distanceOfCol) / self.numberOfItemInRow);
-    CGFloat distance_top = self.distanceOfTop;
-    if (self.prettySingleRow) { distance_top = (page_h - button_h) * 0.5; }
+    
     CSChannelButtonConfigInfo *configInfo = [self makeAndAdjustConfigInfo];
     for (int i = 0; i < itemCount; i++) {
-        NSUInteger currentPage = i / itemCountInOnePage;
+        NSUInteger currentPage = self.autoAdjustHeight ? 0 : i / itemCountInOnePage;
         NSInteger x = (i - (currentPage * itemCountInOnePage)) % self.numberOfItemInRow;
         NSInteger y = (i - (currentPage * itemCountInOnePage)) / self.numberOfItemInRow;
         CGFloat button_x = x * (button_w + self.distanceOfCol) + self.distanceOfCol;
-        CGFloat button_y = y * (button_h + self.distanceOfRow) + distance_top;
+        CGFloat button_y = y * (button_h + self.distanceOfRow);
         CGRect btnRect = CGRectMake(button_x, button_y, button_w, button_h);
         if (self.channelType == CSChannelTypeTitleOnly) {
             configInfo.titleMinSize = [self calcTitleSizeWithTitle:[self.channelData objectAtIndex:i].title];
@@ -180,14 +169,66 @@ static const CGFloat CS_BUTTON_BASE_TAG = 123321;
         [pageView addSubview:button];
         [self.buttonArray addObject:button];
     }
+    UIButton *lastBtnOfFirshPage = (UIButton *)self.pageArr.firstObject.subviews.lastObject;
+    CGFloat page_h_max = CGRectGetMaxY(lastBtnOfFirshPage.frame);
+    
+    CGFloat distance_top = self.distanceOfTop;
+    CGFloat distance_bottom = self.distanceOfbottom;
+    CGFloat scrollView_h = page_h - distance_top - distance_bottom;
+    CGFloat scrollView_w = page_w;
+    
+    if (self.autoAdjustHeight) {
+        CGFloat changeH = page_h_max - scrollView_h;
+        CGRect tempRect = self.frame;
+        tempRect.size.height = CGRectGetHeight(self.frame) + changeH;
+        self.frame = tempRect;
+        scrollView_h = scrollView_h + changeH;
+        self.hidesPageAlawys = YES;
+    }
+    
+    self.scrollView.frame = CGRectMake(0, distance_top, scrollView_w, scrollView_h);
+    self.scrollView.contentSize = CGSizeMake(pageCount * page_w, (self.verticalScrollActivated ? page_h_max : scrollView_h));
+    
+    for (int i = 0 ; i < self.scrollView.subviews.count; i++) {
+        UIView *pageView = self.scrollView.subviews[i];
+        pageView.frame = CGRectMake(i * scrollView_w, 0, scrollView_w, scrollView_h);
+    }
+    
+    if (self.prettySingleRow) {
+        for (CSChannelButton *btn in self.buttonArray) {
+            CGPoint tempCenter = btn.center;
+            tempCenter.y = CGRectGetHeight(self.scrollView.frame) * 0.5;
+            btn.center = tempCenter;
+        }
+    }
+    
+    CGFloat pagCtl_center_y = CGRectGetHeight(self.frame) - CGRectGetHeight(self.pageCtl.frame) * 0.5 - self.pageDotBottomMargin;
+    self.pageCtl.center = CGPointMake(self.scrollView.center.x, pagCtl_center_y);
+    self.pageCtl.pageIndicatorTintColor = self.pageDotColor;
+    self.pageCtl.currentPageIndicatorTintColor = self.currentPageDotColor;
+    self.pageCtl.numberOfPages = pageCount;
+    
+    self.pageCtl.hidesForSinglePage = self.hidesForSinglePage;
+    if (self.hidesPageAlawys) {
+        self.pageCtl.hidesForSinglePage = false;
+        self.pageCtl.hidden = YES;
+    } else {
+        if (self.hidesForSinglePage) {
+            self.pageCtl.hidden = NO;
+            self.pageCtl.hidesForSinglePage = YES;
+        } else {
+            self.pageCtl.hidesForSinglePage = false;
+            self.pageCtl.hidden = NO;
+        }
+    }
 }
 
 - (CGFloat)calcButtonHeight {
     if (self.channelType == CSChannelTypeImageOnly) { return self.imageSize.height; }
- 
+    
     self.titleHeight = MAX([self calcTitleSizeWithTitle:@""].height, self.titleHeight);
     if (self.channelType == CSChannelTypeTitleOnly) { return self.titleHeight; }
-
+    
     return self.imageSize.height + self.titleHeight + self.distanceInItem;
 }
 
@@ -197,9 +238,9 @@ static const CGFloat CS_BUTTON_BASE_TAG = 123321;
     CGFloat imge_total_h = (self.channelType == CSChannelTypeTitleOnly ? 0.0 : (self.imageSize.height + self.distanceInItem) * self.numberOfRowInPage);
     CGFloat title_h_max = (page_h - imge_total_h - self.distanceOfTop - self.distanceOfRow * (self.numberOfRowInPage - 1)) / self.numberOfRowInPage;
     CGSize titleSize = [title boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, title_h_max)
-                                                      options:NSStringDrawingUsesLineFragmentOrigin
-                                                   attributes:@{NSFontAttributeName : self.titleFont}
-                                                      context:nil].size;
+                                           options:NSStringDrawingUsesLineFragmentOrigin
+                                        attributes:@{NSFontAttributeName : self.titleFont}
+                                           context:nil].size;
     CGFloat button_w = (page_w - (self.numberOfItemInRow + 1) * self.distanceOfCol) / self.numberOfItemInRow;
     CGFloat title_h = (title_h_max > ceil(titleSize.height) ? MIN(ceil(titleSize.height), title_h_max) : ceil(titleSize.height));
     CGFloat title_w = (button_w > ceil(titleSize.width) ? MIN(ceil(titleSize.width), button_w) : ceil(titleSize.width));
