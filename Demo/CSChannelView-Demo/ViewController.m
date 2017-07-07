@@ -12,6 +12,7 @@
 #import "CSToast.h"
 
 #define kFULL_WIDTH ([[UIScreen mainScreen] bounds].size.width)
+static const CGFloat customChannelViewDefaultH = 165;
 @interface ViewController ()
 
 @property (nonatomic, strong) NSMutableArray<NSDictionary *> *data;
@@ -25,6 +26,8 @@
 @property (nonatomic, assign) BOOL showTag;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *rowSegment;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *itemCountSegment;
+@property (weak, nonatomic) IBOutlet UISwitch *autoHeightSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *verticalScrollSwitch;
 @property (nonatomic, assign) CGFloat lastStepperValue;
 
 @end
@@ -75,13 +78,11 @@
 }
 
 /**
- 自定义频道样式
+ 自定义频道
  */
 - (void)customChannelView {
-    CSChannelView *channelView = [[CSChannelView alloc] initWithFrame:CGRectMake(0, 201 + 16, kFULL_WIDTH, 165)];
+    CSChannelView *channelView = [[CSChannelView alloc] initWithFrame:CGRectMake(0, 201 + 16, kFULL_WIDTH, customChannelViewDefaultH)];
     self.channelView = channelView;
-//    channelView.verticalScrollActivated = YES;
-    channelView.autoAdjustHeight = YES;
     [self.view addSubview:channelView];
     [self addActionWithSender:channelView];
     [channelView loadDataInfoWithImages:self.imgs tittls:self.titles tagImages:self.tagImgs];
@@ -129,6 +130,8 @@
     NSArray *imgs = self.showImage ? self.imgs : nil;
     NSArray *titles = self.showTitle ? self.titles : nil;
     NSArray *tags = self.showTag ? self.tagImgs : nil;
+    self.channelView.autoAdjustHeight = self.autoHeightSwitch.on;
+    self.channelView.verticalScrollActivated = self.verticalScrollSwitch.on;
     
     [self.channelView loadDataInfoWithImages:imgs tittls:titles tagImages:tags];
 }
@@ -165,6 +168,27 @@
 }
 - (IBAction)showTagImage:(UISwitch *)sender {
     self.showTag = sender.on;
+    [self refreshChannelView];
+}
+
+- (IBAction)autoAdjustHeight:(UISwitch *)sender {
+    if (sender.on) {
+        self.verticalScrollSwitch.on = NO;
+    } else {
+        CGRect tempRect = self.channelView.frame;
+        tempRect.size.height = customChannelViewDefaultH;
+        self.channelView.frame = tempRect;
+    }
+    [self refreshChannelView];
+}
+
+- (IBAction)verticalScroll:(UISwitch *)sender {
+    if (sender.on) {
+        self.autoHeightSwitch.on = NO;
+        CGRect tempRect = self.channelView.frame;
+        tempRect.size.height = customChannelViewDefaultH;
+        self.channelView.frame = tempRect;
+    }
     [self refreshChannelView];
 }
 

@@ -11,9 +11,10 @@
 @class CSChannelButtonDataInfo;
 
 typedef NS_ENUM(NSInteger, CSChannelType) {
-    CSChannelTypeNormal,
-    CSChannelTypeImageOnly,
-    CSChannelTypeTitleOnly
+    CSChannelTypeNone,      // none of image and title
+    CSChannelTypeNormal,    // image and title
+    CSChannelTypeImageOnly, // image only
+    CSChannelTypeTitleOnly  // title only
 };
 
 @interface CSChannelButton : UIButton

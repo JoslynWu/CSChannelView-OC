@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="467" width="375" height="200"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ol5-xi-eEe">
-                                        <rect key="frame" x="157" y="5" width="188" height="29"/>
+                                        <rect key="frame" x="52" y="5" width="188" height="29"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="188" id="9AI-Kj-fZm"/>
                                         </constraints>
@@ -118,14 +118,31 @@
                                             </switch>
                                         </subviews>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="每行多少个" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vb3-1T-HyY">
-                                        <rect key="frame" x="8" y="46" width="76.5" height="18"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pkG-pa-3g4">
+                                        <rect key="frame" x="256" y="3.5" width="110.5" height="31"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自动高度" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gS9-sV-tHQ">
+                                                <rect key="frame" x="0.0" y="0.0" width="61.5" height="31"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="chp-HM-crX">
+                                                <rect key="frame" x="61.5" y="0.0" width="51" height="31"/>
+                                                <connections>
+                                                    <action selector="autoAdjustHeight:" destination="BYZ-38-t0r" eventType="valueChanged" id="A7Z-rb-eHO"/>
+                                                </connections>
+                                            </switch>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="个/行" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vb3-1T-HyY">
+                                        <rect key="frame" x="8" y="46" width="36" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="AKa-Ke-URQ">
-                                        <rect key="frame" x="157" y="41" width="188" height="29"/>
+                                        <rect key="frame" x="52" y="41" width="188" height="29"/>
                                         <segments>
                                             <segment title="3"/>
                                             <segment title="4"/>
@@ -136,8 +153,8 @@
                                             <action selector="changeItemCountInfRow:" destination="BYZ-38-t0r" eventType="valueChanged" id="aJo-1P-Lu6"/>
                                         </connections>
                                     </segmentedControl>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="多少行" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fit-1X-xa4">
-                                        <rect key="frame" x="8" y="10" width="46" height="18"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="行" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fit-1X-xa4">
+                                        <rect key="frame" x="8" y="10" width="15.5" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -148,12 +165,31 @@
                                             <action selector="changeItemCount:" destination="BYZ-38-t0r" eventType="valueChanged" id="tyY-Vl-eai"/>
                                         </connections>
                                     </stepper>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lqy-Eg-Vsx">
+                                        <rect key="frame" x="256" y="39.5" width="110.5" height="31"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="垂直滚动" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="twF-qa-JLQ">
+                                                <rect key="frame" x="0.0" y="0.0" width="61.5" height="31"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="CQ4-i1-TaV">
+                                                <rect key="frame" x="61.5" y="0.0" width="51" height="31"/>
+                                                <connections>
+                                                    <action selector="verticalScroll:" destination="BYZ-38-t0r" eventType="valueChanged" id="F5X-Pz-tdj"/>
+                                                </connections>
+                                            </switch>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="47X-ao-g0U"/>
                                     <constraint firstItem="AKa-Ke-URQ" firstAttribute="trailing" secondItem="ol5-xi-eEe" secondAttribute="trailing" id="5pe-8M-xUg"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="pkG-pa-3g4" secondAttribute="trailing" id="Ams-0p-Teq"/>
                                     <constraint firstItem="5nf-1P-Maf" firstAttribute="centerY" secondItem="0BE-jB-dHQ" secondAttribute="centerY" id="C3U-WD-Blt"/>
+                                    <constraint firstAttribute="trailing" secondItem="ol5-xi-eEe" secondAttribute="trailing" constant="135" id="C69-NN-TLu"/>
                                     <constraint firstItem="oxG-os-Y1c" firstAttribute="centerY" secondItem="5nf-1P-Maf" secondAttribute="centerY" id="Clq-Lt-XFn"/>
                                     <constraint firstItem="bQL-9X-j9H" firstAttribute="centerY" secondItem="0BE-jB-dHQ" secondAttribute="centerY" id="Ddq-we-bAK"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="7CZ-27-jaV" secondAttribute="trailing" id="Dqe-Qe-GaC"/>
@@ -161,17 +197,18 @@
                                     <constraint firstItem="bQL-9X-j9H" firstAttribute="leading" secondItem="0BE-jB-dHQ" secondAttribute="trailing" constant="10" id="Eul-aj-FMX"/>
                                     <constraint firstItem="7CZ-27-jaV" firstAttribute="trailing" secondItem="1KY-HE-mVR" secondAttribute="trailing" id="Foe-m6-WjA"/>
                                     <constraint firstItem="efv-ah-JXQ" firstAttribute="leading" secondItem="fit-1X-xa4" secondAttribute="leading" id="I3j-PK-oy2"/>
-                                    <constraint firstAttribute="trailing" secondItem="ol5-xi-eEe" secondAttribute="trailing" constant="30" id="LkT-1f-zZU"/>
                                     <constraint firstItem="3eM-DR-PN3" firstAttribute="leading" secondItem="efv-ah-JXQ" secondAttribute="leading" id="O0X-CJ-aDi"/>
                                     <constraint firstItem="Vb3-1T-HyY" firstAttribute="leading" secondItem="fit-1X-xa4" secondAttribute="leading" id="Og9-Po-TxK"/>
+                                    <constraint firstItem="lqy-Eg-Vsx" firstAttribute="centerY" secondItem="Vb3-1T-HyY" secondAttribute="centerY" id="PfR-IG-kDN"/>
                                     <constraint firstItem="ol5-xi-eEe" firstAttribute="top" secondItem="RCb-wg-lKQ" secondAttribute="top" constant="5" id="PpY-WS-PIh"/>
                                     <constraint firstItem="AKa-Ke-URQ" firstAttribute="leading" secondItem="ol5-xi-eEe" secondAttribute="leading" id="SDg-88-aEY"/>
+                                    <constraint firstItem="pkG-pa-3g4" firstAttribute="centerY" secondItem="fit-1X-xa4" secondAttribute="centerY" id="UZj-1L-pVe"/>
                                     <constraint firstItem="7CZ-27-jaV" firstAttribute="leading" secondItem="1KY-HE-mVR" secondAttribute="leading" id="Vne-II-QwS"/>
                                     <constraint firstItem="efv-ah-JXQ" firstAttribute="leading" secondItem="0BE-jB-dHQ" secondAttribute="leading" id="XHo-3K-3rA"/>
-                                    <constraint firstAttribute="trailing" secondItem="ol5-xi-eEe" secondAttribute="trailing" constant="30" id="Yz8-PV-X40"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="oxG-os-Y1c" secondAttribute="trailing" id="aFm-tH-gn9"/>
                                     <constraint firstItem="7CZ-27-jaV" firstAttribute="leading" secondItem="3eM-DR-PN3" secondAttribute="trailing" constant="16" id="b8E-Nl-4lf"/>
                                     <constraint firstItem="ol5-xi-eEe" firstAttribute="top" secondItem="RCb-wg-lKQ" secondAttribute="top" constant="5" id="bY0-DZ-xUE"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="lqy-Eg-Vsx" secondAttribute="trailing" id="cG1-gg-Hzd"/>
                                     <constraint firstItem="5nf-1P-Maf" firstAttribute="leading" secondItem="bQL-9X-j9H" secondAttribute="trailing" constant="10" id="fKP-CH-9Jz"/>
                                     <constraint firstItem="ol5-xi-eEe" firstAttribute="centerY" secondItem="fit-1X-xa4" secondAttribute="centerY" id="hse-Gz-FXw"/>
                                     <constraint firstItem="1KY-HE-mVR" firstAttribute="centerY" secondItem="efv-ah-JXQ" secondAttribute="centerY" id="l7z-cL-TjQ"/>
@@ -192,8 +229,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="autoHeightSwitch" destination="chp-HM-crX" id="qGt-b5-Qu2"/>
                         <outlet property="itemCountSegment" destination="AKa-Ke-URQ" id="CYL-4l-9QY"/>
                         <outlet property="rowSegment" destination="ol5-xi-eEe" id="j5V-cG-InQ"/>
+                        <outlet property="verticalScrollSwitch" destination="CQ4-i1-TaV" id="zar-jv-EGu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
