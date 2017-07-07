@@ -4,5 +4,6 @@ target 'CSChannelView' do
    use_frameworks!
    pod 'SDWebImage'
    pod 'YYModel'
+   pod 'CSToast'
 
 end

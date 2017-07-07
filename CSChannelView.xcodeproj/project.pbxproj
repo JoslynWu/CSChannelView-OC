@@ -17,7 +17,6 @@
 		9E7FD6261F0DECDF00C14EF2 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E7FD61B1F0DECDF00C14EF2 /* config.plist */; };
 		9E7FD6291F0DECDF00C14EF2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E7FD61F1F0DECDF00C14EF2 /* main.m */; };
 		9E7FD62A1F0DECDF00C14EF2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E7FD6211F0DECDF00C14EF2 /* ViewController.m */; };
-		9E7FD62E1F0DEDFE00C14EF2 /* CSToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E7FD62D1F0DEDFE00C14EF2 /* CSToast.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,8 +35,6 @@
 		9E7FD61F1F0DECDF00C14EF2 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9E7FD6201F0DECDF00C14EF2 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		9E7FD6211F0DECDF00C14EF2 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		9E7FD62C1F0DEDFE00C14EF2 /* CSToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSToast.h; sourceTree = "<group>"; };
-		9E7FD62D1F0DEDFE00C14EF2 /* CSToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSToast.m; sourceTree = "<group>"; };
 		9EDA20661EEFB71800E50B84 /* CSChannelView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CSChannelView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FCC31AFE6121D6AF8F533B3 /* Pods_CSChannelView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CSChannelView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C56A3C3E4098C80AC4E5FB8C /* Pods-CSChannelView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CSChannelView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CSChannelView/Pods-CSChannelView.debug.xcconfig"; sourceTree = "<group>"; };
@@ -86,7 +83,6 @@
 		9E7FD5F21F0DDB9000C14EF2 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
-				9E7FD62B1F0DEDFE00C14EF2 /* Tools */,
 				9E7FD6131F0DECDF00C14EF2 /* CSChannelView-Demo */,
 			);
 			path = Demo;
@@ -109,15 +105,6 @@
 				9E7FD62F1F0DFB5200C14EF2 /* Supporting Files */,
 			);
 			path = "CSChannelView-Demo";
-			sourceTree = "<group>";
-		};
-		9E7FD62B1F0DEDFE00C14EF2 /* Tools */ = {
-			isa = PBXGroup;
-			children = (
-				9E7FD62C1F0DEDFE00C14EF2 /* CSToast.h */,
-				9E7FD62D1F0DEDFE00C14EF2 /* CSToast.m */,
-			);
-			path = Tools;
 			sourceTree = "<group>";
 		};
 		9E7FD62F1F0DFB5200C14EF2 /* Supporting Files */ = {
@@ -277,7 +264,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E7FD62E1F0DEDFE00C14EF2 /* CSToast.m in Sources */,
 				9E7FD62A1F0DECDF00C14EF2 /* ViewController.m in Sources */,
 				9E7FD6291F0DECDF00C14EF2 /* main.m in Sources */,
 				9E7FD5F11F0DDB7D00C14EF2 /* CSChannelView.m in Sources */,
