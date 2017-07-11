@@ -1,0 +1,6 @@
+framework module CSToast_OC {
+  umbrella header "CSToast-OC-umbrella.h"
+
+  export *
+  module * { export * }
+}

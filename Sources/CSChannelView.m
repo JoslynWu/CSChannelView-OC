@@ -22,6 +22,7 @@ static const CGFloat CS_BUTTON_BASE_TAG = 123321;
 @property (nonatomic, assign) NSInteger pageCount;
 @property (nonatomic, assign) CGRect initFrame;
 @property (nonatomic, assign) BOOL isAutoScale;
+@property (nonatomic, assign) BOOL isChangeNoneType;
 
 @end
 
@@ -106,13 +107,17 @@ static const CGFloat CS_BUTTON_BASE_TAG = 123321;
 - (void)refreshUI {
     [self removeSubViewsOfScrollView];
     
+    self.pageCtl.hidden = (self.channelType == CSChannelTypeNone);
     if (self.channelType == CSChannelTypeNone) {
         CGRect tempRect = self.frame;
         tempRect.size.height = 0.0;
         self.frame = tempRect;
+        self.isChangeNoneType = YES;
         return;
+    } else if (self.isChangeNoneType) {
+        self.frame = self.initFrame;
+        self.isChangeNoneType = NO;
     }
-    self.frame = self.initFrame;
     
     if (self.prettySingleRow) { self.numberOfRowInPage = 1; }
     NSUInteger itemCount = self.channelData.count;

@@ -12,6 +12,6 @@
 
 #import "CSToast.h"
 
-FOUNDATION_EXPORT double CSToastVersionNumber;
-FOUNDATION_EXPORT const unsigned char CSToastVersionString[];
+FOUNDATION_EXPORT double CSToast_OCVersionNumber;
+FOUNDATION_EXPORT const unsigned char CSToast_OCVersionString[];
 

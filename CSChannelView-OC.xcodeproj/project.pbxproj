@@ -35,7 +35,7 @@
 		9E7FD61F1F0DECDF00C14EF2 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9E7FD6201F0DECDF00C14EF2 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		9E7FD6211F0DECDF00C14EF2 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		9EDA20661EEFB71800E50B84 /* CSChannelView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CSChannelView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9EDA20661EEFB71800E50B84 /* CSChannelView-OC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CSChannelView-OC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FCC31AFE6121D6AF8F533B3 /* Pods_CSChannelView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CSChannelView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C56A3C3E4098C80AC4E5FB8C /* Pods-CSChannelView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CSChannelView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CSChannelView/Pods-CSChannelView.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -135,7 +135,7 @@
 		9EDA20671EEFB71800E50B84 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9EDA20661EEFB71800E50B84 /* CSChannelView.app */,
+				9EDA20661EEFB71800E50B84 /* CSChannelView-OC.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -143,9 +143,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9EDA20651EEFB71800E50B84 /* CSChannelView */ = {
+		9EDA20651EEFB71800E50B84 /* CSChannelView-OC */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9EDA207D1EEFB71800E50B84 /* Build configuration list for PBXNativeTarget "CSChannelView" */;
+			buildConfigurationList = 9EDA207D1EEFB71800E50B84 /* Build configuration list for PBXNativeTarget "CSChannelView-OC" */;
 			buildPhases = (
 				51B6E7EB17A7B82E9A520C41 /* [CP] Check Pods Manifest.lock */,
 				9EDA20621EEFB71800E50B84 /* Sources */,
@@ -158,9 +158,9 @@
 			);
 			dependencies = (
 			);
-			name = CSChannelView;
+			name = "CSChannelView-OC";
 			productName = CSChannelView;
-			productReference = 9EDA20661EEFB71800E50B84 /* CSChannelView.app */;
+			productReference = 9EDA20661EEFB71800E50B84 /* CSChannelView-OC.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -179,7 +179,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9EDA20611EEFB71800E50B84 /* Build configuration list for PBXProject "CSChannelView" */;
+			buildConfigurationList = 9EDA20611EEFB71800E50B84 /* Build configuration list for PBXProject "CSChannelView-OC" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -192,7 +192,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9EDA20651EEFB71800E50B84 /* CSChannelView */,
+				9EDA20651EEFB71800E50B84 /* CSChannelView-OC */,
 			);
 		};
 /* End PBXProject section */
@@ -233,13 +233,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CSChannelView-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6641477D90BA157C43B8387C /* [CP] Embed Pods Frameworks */ = {
@@ -248,9 +251,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-CSChannelView/Pods-CSChannelView-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CSToast-OC/CSToast_OC.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/YYModel/YYModel.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CSToast_OC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYModel.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -413,7 +423,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9EDA20611EEFB71800E50B84 /* Build configuration list for PBXProject "CSChannelView" */ = {
+		9EDA20611EEFB71800E50B84 /* Build configuration list for PBXProject "CSChannelView-OC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9EDA207B1EEFB71800E50B84 /* Debug */,
@@ -422,7 +432,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9EDA207D1EEFB71800E50B84 /* Build configuration list for PBXNativeTarget "CSChannelView" */ = {
+		9EDA207D1EEFB71800E50B84 /* Build configuration list for PBXNativeTarget "CSChannelView-OC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9EDA207E1EEFB71800E50B84 /* Debug */,

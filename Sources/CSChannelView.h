@@ -5,6 +5,9 @@
 //  Created by Joslyn Wu on 2017/6/13.
 //  Copyright © 2017年 joslyn. All rights reserved.
 //
+// https://github.com/JoslynWu/CSChannelView-OC.git
+// 一个灵活的频道View.
+//
 
 #import <UIKit/UIKit.h>
 
