@@ -8,8 +8,7 @@
 
 #import "ViewController.h"
 #import "CSChannelView.h"
-//#import "YYModel.h"
-//#import "CSToast.h"
+#import "CSToast.h"
 
 #define kFULL_WIDTH ([[UIScreen mainScreen] bounds].size.width)
 static const CGFloat customChannelViewDefaultH = 165;
@@ -122,7 +121,7 @@ static const CGFloat customChannelViewDefaultH = 165;
 
 - (void)addActionWithSender:(CSChannelView *)sender {
     sender.itemDidClickBlock = ^(NSInteger index) {
-//        CSToast.text([self.titles objectAtIndex:index]).bottom(210).show();
+        CSToast.text([self.titles objectAtIndex:index]).bottom(210).show();
     };
 }
 

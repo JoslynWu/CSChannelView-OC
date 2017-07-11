@@ -5,7 +5,7 @@
 ## Swift版入口：[CSChannelView](https://github.com/JoslynWu/CSChannelView)
 
 ## 效果图
-![](/Effect/CSChannelView.png)
+![](/Effect/CSChannelView.gif)
 
 ## 怎么接入
 
