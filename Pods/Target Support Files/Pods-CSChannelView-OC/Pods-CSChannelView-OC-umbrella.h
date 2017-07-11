@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_CSChannelViewVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_CSChannelViewVersionString[];
+FOUNDATION_EXPORT double Pods_CSChannelView_OCVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_CSChannelView_OCVersionString[];
 

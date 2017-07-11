@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name         = "CSChannelView-OC"
-  s.version      = "0.0.1"
-  s.summary      = "一个灵活的频道View"
+  s.version      = "0.0.2"
+  s.summary      = "一个灵活的频道入口View。文字、图标可以单独显示；可以水平、竖直滚动；可以自动调整高度。"
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.authors      = { 'Joslyn' => 'cs_joslyn@foxmail.com' }
   s.homepage     = 'https://github.com/JoslynWu/CSChannelView-OC'

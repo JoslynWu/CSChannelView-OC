@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/cs/Desktop/Repo/CSChannelView-OC/CSChannelView-OC.xcodeproj">
+      location = "group:CSChannelView-OC.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

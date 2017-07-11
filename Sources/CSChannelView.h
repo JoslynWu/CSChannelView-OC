@@ -6,7 +6,7 @@
 //  Copyright © 2017年 joslyn. All rights reserved.
 //
 // https://github.com/JoslynWu/CSChannelView-OC.git
-// 一个灵活的频道View.
+// 一个灵活的频道入口View。文字、图标可以单独显示；可以水平、竖直滚动；可以自动调整高度。
 //
 
 #import <UIKit/UIKit.h>
