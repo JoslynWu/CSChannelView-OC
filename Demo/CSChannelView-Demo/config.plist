@@ -6,97 +6,95 @@
 	<array>
 		<dict>
 			<key>imgUrl</key>
-			<string>home_health_icon</string>
-			<key>temp</key>
-			<string>home_health_icon</string>
-			<key>imgUrl_net</key>
-			<string>https://static.zhongan.com/upload/app/material/1494992549461.png</string>
-			<key>title</key>
-			<string>健康</string>
-		</dict>
-		<dict>
-			<key>imgUrl</key>
-			<string>home_travel_icon</string>
+			<string>item00</string>
 			<key>imgUrl_net</key>
 			<string></string>
 			<key>title</key>
-			<string>旅行</string>
+			<string>item00</string>
+		</dict>
+		<dict>
+			<key>imgUrl</key>
+			<string>item01</string>
+			<key>imgUrl_net</key>
+			<string></string>
+			<key>title</key>
+			<string>item01</string>
 			<key>iconImgUrl</key>
 			<string>channel_tag_new</string>
 		</dict>
 		<dict>
 			<key>imgUrl</key>
-			<string>home_car_icon</string>
+			<string>item02</string>
 			<key>imgUrl_net</key>
 			<string></string>
 			<key>title</key>
-			<string>汽车</string>
+			<string>item02</string>
 		</dict>
 		<dict>
 			<key>imgUrl</key>
-			<string>home_loan_icon</string>
+			<string>item03</string>
 			<key>imgUrl_net</key>
 			<string></string>
 			<key>title</key>
-			<string>马上金</string>
+			<string>item03</string>
 		</dict>
 		<dict>
 			<key>imgUrl</key>
-			<string>home_store_icon</string>
+			<string>item04</string>
 			<key>imgUrl_net</key>
 			<string></string>
 			<key>title</key>
-			<string>保障商城</string>
+			<string>item04</string>
 		</dict>
 		<dict>
 			<key>imgUrl</key>
-			<string>home_welfare_icon</string>
+			<string>item05</string>
 			<key>imgUrl_net</key>
 			<string></string>
 			<key>title</key>
-			<string>福利社</string>
+			<string>item05</string>
 		</dict>
 		<dict>
 			<key>imgUrl</key>
-			<string>home_kf_icon</string>
+			<string>item06</string>
 			<key>imgUrl_net</key>
 			<string></string>
 			<key>title</key>
-			<string>客服</string>
+			<string>item06</string>
 			<key>iconImgUrl</key>
 			<string>channel_tag_new</string>
 		</dict>
 		<dict>
 			<key>imgUrl</key>
-			<string>home_gift_icon</string>
+			<string>item07</string>
 			<key>imgUrl_net</key>
 			<string></string>
 			<key>title</key>
-			<string>邀请有礼</string>
+			<string>item07</string>
 		</dict>
 		<dict>
 			<key>imgUrl</key>
-			<string>home_health_icon</string>
+			<string>item08</string>
 			<key>imgUrl_net</key>
 			<string></string>
 			<key>title</key>
-			<string>健康</string>
+			<string>item08</string>
 		</dict>
 		<dict>
 			<key>imgUrl</key>
-			<string>home_travel_icon</string>
+			<string>item09</string>
 			<key>imgUrl_net</key>
 			<string></string>
 			<key>title</key>
-			<string>旅行</string>
+			<string>item09</string>
 		</dict>
 		<dict>
 			<key>imgUrl</key>
-			<string>home_car_icon</string>
+			<string>item10</string>
 			<key>imgUrl_net</key>
 			<string></string>
 			<key>title</key>
-			<string>汽车</string>
+			<string>item10</string>
 		</dict>
 	</array>
 </dict>
