@@ -9,16 +9,17 @@
 #import "CSChannelView.h"
 #import "CSChannelButton.h"
 
-static const CGFloat CS_BUTTON_BASE_TAG = 123321;
-
+static const NSInteger CS_BUTTON_BASE_TAG = 123321;
 @interface CSChannelView ()<UIScrollViewDelegate>
 
 @property (nonatomic, strong) NSArray<CSChannelButtonDataInfo *> *channelData;
 @property (nonatomic, strong) NSMutableArray<CSChannelButton *> *buttonArray;
 @property (nonatomic, strong) NSMutableArray<UIView *> *pageArr;
+@property (nonatomic, strong) NSMutableArray<NSNumber *> *titleMinWidths;
 @property (nonatomic, assign) CSChannelType channelType;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIPageControl *pageCtl;
+@property (nonatomic, strong) UIView *selectIndicator;
 @property (nonatomic, assign) NSInteger pageCount;
 @property (nonatomic, assign) CGRect initFrame;
 @property (nonatomic, assign) BOOL isAutoScale;
@@ -130,9 +131,45 @@ static const CGFloat CS_BUTTON_BASE_TAG = 123321;
         [self.pageArr addObject:pageView];
     }
     
+    [self createIndicator];
     [self createButtons];
     [self refreshFrame];
     [self refreshPageCtl];
+    [self refreshIndicatorFrameWithIndex:0 animatedIfSingleRow:NO];
+}
+
+- (void)createIndicator {
+    if (self.channelType != CSChannelTypeTitleOnly) { return; }
+    
+    UIView *indicator = [UIView new];
+    self.selectIndicator = indicator;
+    [self.scrollView addSubview:self.selectIndicator];
+    indicator.hidden = YES;
+    self.selectIndicator.hidden = !self.showSelectIndicator;
+    self.selectIndicator.backgroundColor = self.selectIndicatorColor;
+}
+
+- (void)refreshIndicatorFrameWithIndex:(NSInteger)index animatedIfSingleRow:(BOOL)flag {
+    if (self.selectIndicator.hidden || self.channelType != CSChannelTypeTitleOnly) { return; }
+    CGFloat titleMin_w = [self.titleMinWidths objectAtIndex:index].floatValue;
+    CSChannelButton *btn = [self.buttonArray objectAtIndex:index];
+    
+    NSInteger currentPage = (self.autoAdjustHeight || self.verticalScrollActivated ? 0 : floor(index / (self.numberOfItemInRow * self.numberOfRowInPage - 0.1)));
+    
+    CGFloat indicator_w = titleMin_w + self.selectIndicatorAdjustW * 2;
+    CGFloat indicator_x = CGRectGetMidX(btn.frame) - indicator_w * 0.5 + CGRectGetWidth(self.scrollView.frame) * currentPage;
+    CGRect tempRect = CGRectMake(indicator_x, CGRectGetMaxY(btn.frame) - self.selectIndicatorH, indicator_w, self.selectIndicatorH);
+    if (self.numberOfRowInPage > 1) {
+        self.selectIndicator.frame = tempRect;
+    } else {
+        if (flag) {
+            [UIView animateWithDuration:0.25 animations:^{
+                self.selectIndicator.frame = tempRect;
+            }];
+        } else {
+           self.selectIndicator.frame = tempRect;
+        }
+    }
 }
 
 - (void)createButtons {
@@ -145,6 +182,7 @@ static const CGFloat CS_BUTTON_BASE_TAG = 123321;
     self.distanceOfRow = self.distanceOfRow * scale;
     self.distanceOfCol = self.distanceOfCol * scale;
     
+    self.titleMinWidths = [[NSMutableArray alloc] init];
     self.buttonArray = [[NSMutableArray alloc] init];
     NSUInteger itemCountInOnePage = self.numberOfItemInRow * self.numberOfRowInPage;
     CGFloat button_h = [self calcButtonHeight] * scale;
@@ -158,7 +196,9 @@ static const CGFloat CS_BUTTON_BASE_TAG = 123321;
         CGFloat button_y = y * (button_h + self.distanceOfRow);
         CGRect btnRect = CGRectMake(button_x, button_y, button_w, button_h);
         if (self.channelType == CSChannelTypeTitleOnly) {
-            configInfo.titleMinSize = [self calcTitleSizeWithTitle:[self.channelData objectAtIndex:i].title];
+            CGSize titleMinSize = [self calcTitleSizeWithTitle:[self.channelData objectAtIndex:i].title];
+            configInfo.titleMinSize = titleMinSize;
+            [self.titleMinWidths addObject:@(titleMinSize.width)];
         }
         CSChannelButton *button = [[CSChannelButton alloc] initWithFrame:btnRect configInfo:configInfo];
         [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -295,6 +335,10 @@ static const CGFloat CS_BUTTON_BASE_TAG = 123321;
     self.currentPageDotColor = [UIColor darkGrayColor];
     self.pageDotBottomMargin = 6;
     self.hidesForSinglePage = true;
+    self.showSelectIndicator = false;
+    self.selectIndicatorColor = [UIColor blueColor];
+    self.selectIndicatorAdjustW = 0.0;
+    self.selectIndicatorH = 2.0;
 }
 
 -(void)setupUI {
@@ -320,6 +364,7 @@ static const CGFloat CS_BUTTON_BASE_TAG = 123321;
 
 #pragma mark  -  listen
 -(void)buttonAction:(UIButton *)sender {
+    [self refreshIndicatorFrameWithIndex:sender.tag - CS_BUTTON_BASE_TAG animatedIfSingleRow:YES];
     if (self.itemDidClickBlock) {
         self.itemDidClickBlock(sender.tag - CS_BUTTON_BASE_TAG);
     }

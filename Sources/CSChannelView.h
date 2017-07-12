@@ -122,4 +122,18 @@
 @property (nonatomic, assign) CGFloat pageDotBottomMargin;
 
 
+// ---------------- 仅文字显示专属
+/** 显示选择指示器。默认不显示。显示时宽度默认为文字宽度 */
+@property (nonatomic, assign) BOOL showSelectIndicator;
+
+/** 选择指示器调整高度。默认为2.0 */
+@property (nonatomic, assign) CGFloat selectIndicatorH;
+
+/** 选择指示器调整长度。默认为0.0 */
+@property (nonatomic, assign) CGFloat selectIndicatorAdjustW;
+
+/** 选择指示器颜色。默认蓝色 */
+@property (nonatomic, strong, nullable) UIColor *selectIndicatorColor;
+
+
 @end
