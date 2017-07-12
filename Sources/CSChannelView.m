@@ -156,7 +156,7 @@ static const NSInteger CS_BUTTON_BASE_TAG = 123321;
     
     NSInteger currentPage = (self.autoAdjustHeight || self.verticalScrollActivated ? 0 : floor(index / (self.numberOfItemInRow * self.numberOfRowInPage - 0.1)));
     
-    CGFloat indicator_w = titleMin_w + self.selectIndicatorAdjustW * 2;
+    CGFloat indicator_w = MIN(CGRectGetWidth(btn.frame), titleMin_w + self.selectIndicatorAdjustW * 2);
     CGFloat indicator_x = CGRectGetMidX(btn.frame) - indicator_w * 0.5 + CGRectGetWidth(self.scrollView.frame) * currentPage;
     CGRect tempRect = CGRectMake(indicator_x, CGRectGetMaxY(btn.frame) - self.selectIndicatorH, indicator_w, self.selectIndicatorH);
     if (self.numberOfRowInPage > 1) {
