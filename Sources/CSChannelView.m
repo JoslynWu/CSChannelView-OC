@@ -108,6 +108,12 @@ static const NSInteger CS_BUTTON_BASE_TAG = 123321;
 - (void)refreshUI {
     [self removeSubViewsOfScrollView];
     
+    if (self.channelType == CSChannelTypeTitleOnly) {
+        self.scrollView.pagingEnabled = !self.autoScrollToCenter;
+    } else {
+        self.scrollView.pagingEnabled = YES;
+    }
+    
     self.pageCtl.hidden = (self.channelType == CSChannelTypeNone);
     if (self.channelType == CSChannelTypeNone) {
         CGRect tempRect = self.frame;
@@ -170,6 +176,21 @@ static const NSInteger CS_BUTTON_BASE_TAG = 123321;
            self.selectIndicator.frame = tempRect;
         }
     }
+    
+    if (!self.autoScrollToCenter) { return; }
+    
+    CGFloat btn_center_x = CGRectGetMidX(btn.frame);
+    CGFloat scrollDistance = btn_center_x - CGRectGetMidX(self.scrollView.frame);
+    if (currentPage == 0) {
+        if (scrollDistance < 0) {
+            scrollDistance = 0.0;
+        }
+    } else {
+        btn_center_x = btn_center_x + CGRectGetWidth(self.scrollView.frame) * currentPage;
+        scrollDistance = btn_center_x - CGRectGetMidX(self.scrollView.frame);
+    }
+    [self.scrollView setContentOffset:CGPointMake(scrollDistance, 0) animated:YES];
+    
 }
 
 - (void)createButtons {
@@ -339,6 +360,7 @@ static const NSInteger CS_BUTTON_BASE_TAG = 123321;
     self.selectIndicatorColor = [UIColor blueColor];
     self.selectIndicatorAdjustW = 0.0;
     self.selectIndicatorH = 2.0;
+    self.autoScrollToCenter = true;
 }
 
 -(void)setupUI {
@@ -364,10 +386,10 @@ static const NSInteger CS_BUTTON_BASE_TAG = 123321;
 
 #pragma mark  -  listen
 -(void)buttonAction:(UIButton *)sender {
-    [self refreshIndicatorFrameWithIndex:sender.tag - CS_BUTTON_BASE_TAG animatedIfSingleRow:YES];
     if (self.itemDidClickBlock) {
         self.itemDidClickBlock(sender.tag - CS_BUTTON_BASE_TAG);
     }
+    [self refreshIndicatorFrameWithIndex:sender.tag - CS_BUTTON_BASE_TAG animatedIfSingleRow:YES];
 }
 
 @end

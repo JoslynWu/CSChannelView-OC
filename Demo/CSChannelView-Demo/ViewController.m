@@ -67,6 +67,7 @@ static const CGFloat customChannelViewDefaultH = 165;
     titleOnlyChannelView.hidesPageAlawys = true;
     titleOnlyChannelView.showSelectIndicator = true;
     titleOnlyChannelView.selectIndicatorColor = [UIColor darkGrayColor];
+    titleOnlyChannelView.autoScrollToCenter = true;
     titleOnlyChannelView.otherConfig = ^(UIButton *item) {
         item.backgroundColor = [UIColor whiteColor];
         item.layer.shadowOffset = CGSizeMake(0, 0);
@@ -86,6 +87,7 @@ static const CGFloat customChannelViewDefaultH = 165;
     self.channelView = channelView;
     [self.view addSubview:channelView];
     [self addActionWithSender:channelView];
+    channelView.autoScrollToCenter = NO;
     [channelView loadDataInfoWithImages:self.imgs tittls:self.titles tagImages:self.tagImgs];
 }
 // -------------------- example --------------------
