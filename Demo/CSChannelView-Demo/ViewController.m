@@ -62,19 +62,12 @@ static const CGFloat customChannelViewDefaultH = 165;
     CSChannelView *titleOnlyChannelView = [[CSChannelView alloc] initWithFrame:CGRectMake(0, 120 + 16, kFULL_WIDTH, 35 + 30)];
     [self.view addSubview:titleOnlyChannelView];
     titleOnlyChannelView.titleHeight = 35;
-    titleOnlyChannelView.distanceOfCol = 8;
+    titleOnlyChannelView.numberOfItemInRow = 5;
     titleOnlyChannelView.prettySingleRow = true;
     titleOnlyChannelView.hidesPageAlawys = true;
     titleOnlyChannelView.showSelectIndicator = true;
     titleOnlyChannelView.selectIndicatorColor = [UIColor darkGrayColor];
-    titleOnlyChannelView.autoScrollToCenter = true;
-    titleOnlyChannelView.otherConfig = ^(UIButton *item) {
-        item.backgroundColor = [UIColor whiteColor];
-        item.layer.shadowOffset = CGSizeMake(0, 0);
-        item.layer.shadowOpacity = 1;
-        item.layer.cornerRadius = 6;
-        item.layer.shadowColor = [UIColor colorWithWhite:0.87 alpha:1].CGColor;
-    };
+    titleOnlyChannelView.autoScrollDidClick = true;
     [self addActionWithSender:titleOnlyChannelView];
     [titleOnlyChannelView loadDataInfoWithImages:nil tittls:self.titles tagImages:nil];
 }
@@ -87,7 +80,7 @@ static const CGFloat customChannelViewDefaultH = 165;
     self.channelView = channelView;
     [self.view addSubview:channelView];
     [self addActionWithSender:channelView];
-    channelView.autoScrollToCenter = NO;
+    channelView.autoScrollDidClick = NO;
     [channelView loadDataInfoWithImages:self.imgs tittls:self.titles tagImages:self.tagImgs];
 }
 // -------------------- example --------------------

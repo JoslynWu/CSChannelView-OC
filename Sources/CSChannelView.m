@@ -109,7 +109,7 @@ static const NSInteger CS_BUTTON_BASE_TAG = 123321;
     [self removeSubViewsOfScrollView];
     
     if (self.channelType == CSChannelTypeTitleOnly) {
-        self.scrollView.pagingEnabled = !self.autoScrollToCenter;
+        self.scrollView.pagingEnabled = !self.autoScrollDidClick;
     } else {
         self.scrollView.pagingEnabled = YES;
     }
@@ -177,20 +177,24 @@ static const NSInteger CS_BUTTON_BASE_TAG = 123321;
         }
     }
     
-    if (!self.autoScrollToCenter) { return; }
+    if (!self.autoScrollDidClick) { return; }
     
     CGFloat btn_center_x = CGRectGetMidX(btn.frame);
     CGFloat scrollDistance = btn_center_x - CGRectGetMidX(self.scrollView.frame);
     if (currentPage == 0) {
         if (scrollDistance < 0) {
             scrollDistance = 0.0;
+        } else {
+            CGFloat scrollItemCount = floor(scrollDistance / CGRectGetWidth(btn.frame));
+            scrollDistance = scrollItemCount * CGRectGetWidth(btn.frame);
         }
     } else {
         btn_center_x = btn_center_x + CGRectGetWidth(self.scrollView.frame) * currentPage;
         scrollDistance = btn_center_x - CGRectGetMidX(self.scrollView.frame);
+        CGFloat scrollItemCount = floor(scrollDistance / CGRectGetWidth(btn.frame));
+        scrollDistance = scrollItemCount * CGRectGetWidth(btn.frame);
     }
     [self.scrollView setContentOffset:CGPointMake(scrollDistance, 0) animated:YES];
-    
 }
 
 - (void)createButtons {
@@ -203,12 +207,22 @@ static const NSInteger CS_BUTTON_BASE_TAG = 123321;
     self.distanceOfRow = self.distanceOfRow * scale;
     self.distanceOfCol = self.distanceOfCol * scale;
     
-    self.titleMinWidths = [[NSMutableArray alloc] init];
+
     self.buttonArray = [[NSMutableArray alloc] init];
     NSUInteger itemCountInOnePage = self.numberOfItemInRow * self.numberOfRowInPage;
     CGFloat button_h = [self calcButtonHeight] * scale;
     CGFloat button_w = ((page_w - (self.numberOfItemInRow + 1) * self.distanceOfCol) / self.numberOfItemInRow);
+    
+    self.titleMinWidths = [[NSMutableArray alloc] init];
     CSChannelButtonConfigInfo *configInfo = [self makeAndAdjustConfigInfo];
+    for (int i = 0; i < itemCount; i++) {
+        if (self.channelType == CSChannelTypeTitleOnly) {
+            CGSize titleMinSize = [self calcTitleSizeWithTitle:[self.channelData objectAtIndex:i].title];
+            configInfo.titleMinSize = titleMinSize;
+            [self.titleMinWidths addObject:@(titleMinSize.width)];
+        }
+    }
+    
     for (int i = 0; i < itemCount; i++) {
         NSUInteger currentPage = self.autoAdjustHeight || self.verticalScrollActivated ? 0 : i / itemCountInOnePage;
         NSInteger x = (i - (currentPage * itemCountInOnePage)) % self.numberOfItemInRow;
@@ -216,11 +230,6 @@ static const NSInteger CS_BUTTON_BASE_TAG = 123321;
         CGFloat button_x = x * (button_w + self.distanceOfCol) + self.distanceOfCol;
         CGFloat button_y = y * (button_h + self.distanceOfRow);
         CGRect btnRect = CGRectMake(button_x, button_y, button_w, button_h);
-        if (self.channelType == CSChannelTypeTitleOnly) {
-            CGSize titleMinSize = [self calcTitleSizeWithTitle:[self.channelData objectAtIndex:i].title];
-            configInfo.titleMinSize = titleMinSize;
-            [self.titleMinWidths addObject:@(titleMinSize.width)];
-        }
         CSChannelButton *button = [[CSChannelButton alloc] initWithFrame:btnRect configInfo:configInfo];
         [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
         button.tag = CS_BUTTON_BASE_TAG + i;
@@ -360,7 +369,7 @@ static const NSInteger CS_BUTTON_BASE_TAG = 123321;
     self.selectIndicatorColor = [UIColor blueColor];
     self.selectIndicatorAdjustW = 0.0;
     self.selectIndicatorH = 2.0;
-    self.autoScrollToCenter = true;
+    self.autoScrollDidClick = true;
 }
 
 -(void)setupUI {

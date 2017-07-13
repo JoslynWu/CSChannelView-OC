@@ -135,8 +135,8 @@
 /** 选择指示器颜色。默认蓝色 */
 @property (nonatomic, strong, nullable) UIColor *selectIndicatorColor;
 
-/** 点击时自动向中间滚动。默认开启 */
-@property (nonatomic, assign) BOOL autoScrollToCenter;
+/** 点击时自动滚动。默认开启 */
+@property (nonatomic, assign) BOOL autoScrollDidClick;
 
 
 @end
